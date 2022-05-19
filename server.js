@@ -7,7 +7,7 @@ let app = express();
 app.use(express.static(initial_path));
 
 app.get('/', (req, res) => {
-    res.sendFile(path.join(initial_path, "public/main.html"));
+    res.sendFile(path.join(initial_path, "main.html"));
 });
 
 app.listen(3000, () => {
