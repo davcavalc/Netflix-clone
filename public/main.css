@@ -83,7 +83,8 @@ body {
     height: 80px;
 }
 
-#banner_button {
+#banner_button1,
+#banner_button2 {
     cursor: pointer;
     color: white;
     outline: none;
@@ -100,7 +101,8 @@ body {
     padding-bottom: .5rem;
 }
 
-#banner_button:hover {
+#banner_button1:hover,
+#banner_button2:hover {
     color: black;
     background-color: #e6e6e6;
     transition: all .3s;

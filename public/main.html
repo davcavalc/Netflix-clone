@@ -24,8 +24,8 @@
         <div id="banner_contents">
             <h1 id="banner_title"></h1>
             <div id="banner_buttons">
-                <button id="banner_button">Play</button>
-                <button id="banner_button">My List</button>
+                <button id="banner_button1">Play</button>
+                <button id="banner_button2">My List</button>
             </div>
             <p id="banner_description"></p>
         </div>
@@ -39,6 +39,15 @@
             <div class="row_posters"></div>
         </div>
     </div>
+
+    <script>
+        window.addEventListener('scroll', function () {
+            "use strict";
+            var nav = document.querySelector('.nav');
+            nav.classList.toggle("active", window.scrollY > 0);
+        });
+
+    </script>
 </body>
 
 </html>
