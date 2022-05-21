@@ -13,7 +13,7 @@ const requests = {
     fetchRomanceMovies:`${base_url}/discover/movie?${api}&with_genres=35`,
     fetchDocumentaries:`${base_url}/discover/movie?${api}&with_genres=27`,
 };
-
+//Used to truncate the string
 function truncate(str, n) {
     return str?.length > n ? str.substr(0, n - 1) + "..." : str;
 }
@@ -23,11 +23,36 @@ fetch(requests.fetchNetflixOriginals)
 .then((res => res.json()))
 .then((data) => {
     console.log(data.results);
+    //every refresh the movie will be charge
     const setMovie = data.results[Math.floor(Math.random() * data.results.length - 1)];
     console.log(setMovie);
     var banner = document.getElementById("banner");
     var banner_title = document.getElementById("banner_title");
     var banner_desc = document.getElementById("banner_description");
-    banner.style.background = "url(" + img_url + setMovie.backdrop_path + ");";
-    banner_desc.innerText = setMovie.truncate(setMovie.overview, 150);
-})//TODO continuar o código
+    banner.style.backgroundImage = "url(" + img_url + setMovie.backdrop_path + ");";
+    banner_desc.innerText = truncate(setMovie.overview, 150);
+    banner_title.innerText = setMovie.name;
+})
+fetch(requests.fetchNetflixOriginals)
+.then((res => res.json()))
+.then((data) => {
+    const headrow = document.getElementById('headrow');
+    const row = document.createElement('div');
+    row.className = "row";
+    row.classList.add("nteflixrow");
+    headrow.appendChild(row);
+    const title = document.createElement("h2");
+    title.className = "row_title";
+    title.innerText = "NETFLIX ORIGINALS";
+    row.appendChild(title);
+    const row_posters = document.createElement("div");
+    row_posters.className = "row_posters";
+    row.appendChild(row_posters);
+    data.results.forEach(movie => {
+        const poster = document.createElement("img");
+        poster.className = "row_posterLarge";
+        var s = movie.name.replace(/\s+/g, "");
+        poster.id = s;
+        poster.src = img_url + movie.poster_path;//TODO continuar a codificação!! 
+    });
+})
