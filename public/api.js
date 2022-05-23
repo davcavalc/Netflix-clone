@@ -53,6 +53,90 @@ fetch(requests.fetchNetflixOriginals)
         poster.className = "row_posterLarge";
         var s = movie.name.replace(/\s+/g, "");
         poster.id = s;
-        poster.src = img_url + movie.poster_path;//TODO continuar a codificação!! 
+        poster.src = img_url + movie.poster_path;
+        row_posters.appendChild(poster);
     });
-})
+});
+
+//trending
+
+fetch(requests.fetchPopular)
+.then((res => res.json()))
+.then((data) => {
+    const headrow = document.getElementById('headrow');
+    const row = document.createElement('div');
+    row.className = "row";
+    row.classList.add("popularrow");
+    headrow.appendChild(row);
+    const title = document.createElement("h2");
+    title.className = "row_title";
+    title.innerText = "Trending now";
+    row.appendChild(title);
+    const row_posters = document.createElement("div");
+    row_posters.className = "row_posters";
+    row.appendChild(row_posters);
+    data.results.forEach(movie => {
+        console.log(movie);
+        const poster = document.createElement("img");
+        poster.className = "row_posterLarge1";
+        var s2 = movie.id;
+        poster.id = s2;
+        poster.src = img_url + movie.poster_path;
+        row_posters.appendChild(poster);
+    });
+});
+
+//Top rated
+
+fetch(requests.fetchActionMovies)
+.then((res => res.json()))
+.then((data) => {
+    const headrow = document.getElementById('headrow');
+    const row = document.createElement('div');
+    row.className = "row";
+    headrow.appendChild(row);
+    const title = document.createElement("h2");
+    title.className = "row_title";
+    title.innerText = "Action movies";
+    row.appendChild(title);
+    const row_posters = document.createElement("div");
+    row_posters.className = "row_posters";
+    row.appendChild(row_posters);
+    data.results.forEach(movie => {
+        console.log(movie);
+        const poster = document.createElement("img");
+        poster.className = "row_poster";
+        var s2 = movie.id;
+        poster.id = s2;
+        poster.src = img_url + movie.backdrop_path;
+        row_posters.appendChild(poster);
+    });
+});
+
+
+//Comedy
+
+fetch(requests.fetchComedyMovies)
+.then((res => res.json()))
+.then((data) => {
+    const headrow = document.getElementById('headrow');
+    const row = document.createElement('div');
+    row.className = "row";
+    headrow.appendChild(row);
+    const title = document.createElement("h2");
+    title.className = "row_title";
+    title.innerText = "Comedy movies";
+    row.appendChild(title);
+    const row_posters = document.createElement("div");
+    row_posters.className = "row_posters";
+    row.appendChild(row_posters);
+    data.results.forEach(movie => {
+        console.log(movie);
+        const poster = document.createElement("img");
+        poster.className = "row_poster";
+        var s2 = movie.id;
+        poster.id = s2;
+        poster.src = img_url + movie.backdrop_path;
+        row_posters.appendChild(poster);
+    });
+});
